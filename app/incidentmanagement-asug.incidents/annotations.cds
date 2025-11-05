@@ -69,6 +69,24 @@ annotate service.Incidents with @(
             $Type : 'UI.DataField',
             Label : 'urgency',
             Value : urgency,
+            Criticality: {$edmJson: {$If: [
+    {$Eq: [{$Path: 'urgency'}, 'CRITICAL']},
+    1,
+    {$If: [
+        {$Eq: [{$Path: 'urgency'}, 'HIGH']},
+        1,
+        {$If: [
+            {$Eq: [{$Path: 'urgency'}, 'MEDIUM']},
+            2,
+            {$If: [
+                {$Eq: [{$Path: 'urgency'}, 'LOW']},
+                3,
+                0
+            ]}
+        ]}
+    ]}
+]}},
+            CriticalityRepresentation : #WithIcon,
         },
         {
             $Type : 'UI.DataField',
