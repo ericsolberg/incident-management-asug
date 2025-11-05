@@ -24,7 +24,8 @@
     "start": "cds-serve",
     "start-local": "npm run generate-entry-point && npm run cds-watch",
     "generate-entry-point": "dev-cap-tools gen-entrypoint",
-    "cds-watch": "cds watch --open"
+    "cds-watch": "cds watch --open",
+    "watch-incidentmanagement-asug.incidents": "cds watch --open incidentmanagement-asug.incidents/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "private": true,
   "cds": {
@@ -54,8 +55,15 @@
       }
     },
     "watch": {
-      "excludes": ["**/node_modules", "**/target", "db/data.sqlite"]
+      "excludes": [
+        "**/node_modules",
+        "**/target",
+        "db/data.sqlite"
+      ]
     }
   },
-  "lcap": true
+  "lcap": true,
+  "sapux": [
+    "app/incidentmanagement-asug.incidents"
+  ]
 }
