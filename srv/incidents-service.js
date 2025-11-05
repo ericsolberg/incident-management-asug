@@ -2,23 +2,55 @@ const cds = require('@sap/cds');
 
 module.exports = cds.service.impl(async function() {
 
-    const { Incidents } = this.entities;
+    const { Incidents, BusinessPartners } = this.entities;
 
-    // Before CREATE: Set urgency to HIGH if title contains "urgent"
+    // Helper function to lookup business partner name
+    const lookupBusinessPartnerName = async (businessPartnerID) => {
+        if (!businessPartnerID) return null;
+        
+        try {
+            const bp = await SELECT.one.from(BusinessPartners)
+                .columns('BusinessPartnerFullName')
+                .where({ BusinessPartner: businessPartnerID });
+            
+            return bp ? bp.BusinessPartnerFullName : null;
+        } catch (error) {
+            console.error('Error looking up business partner:', error);
+            return null;
+        }
+    };
+
+    // Before CREATE: Set urgency to HIGH if title contains "urgent" and lookup business partner name
     this.before('CREATE', Incidents, async (req) => {
         const incident = req.data;
         
         if (incident.title && incident.title.toLowerCase().includes('urgent')) {
             incident.urgency = 'HIGH';
         }
+
+        // Lookup business partner name if business partner is provided
+        if (incident.businessPartner) {
+            const businessPartnerName = await lookupBusinessPartnerName(incident.businessPartner);
+            if (businessPartnerName) {
+                incident.businessPartnerName = businessPartnerName;
+            }
+        }
     });
 
-    // Before UPDATE/PATCH: Set urgency to HIGH if title contains "urgent"
+    // Before UPDATE/PATCH: Set urgency to HIGH if title contains "urgent" and lookup business partner name
     this.before(['UPDATE', 'PATCH'], Incidents, async (req) => {
         const incident = req.data;
         
         if (incident.title && incident.title.toLowerCase().includes('urgent')) {
             incident.urgency = 'HIGH';
+        }
+
+        // Lookup business partner name if business partner is provided
+        if (incident.businessPartner) {
+            const businessPartnerName = await lookupBusinessPartnerName(incident.businessPartner);
+            if (businessPartnerName) {
+                incident.businessPartnerName = businessPartnerName;
+            }
         }
     });
 
@@ -42,6 +74,14 @@ module.exports = cds.service.impl(async function() {
         if (incident.title && incident.title.toLowerCase().includes('urgent')) {
             incident.urgency = 'HIGH';
         }
+
+        // Lookup business partner name if business partner is provided
+        if (incident.businessPartner) {
+            const businessPartnerName = await lookupBusinessPartnerName(incident.businessPartner);
+            if (businessPartnerName) {
+                incident.businessPartnerName = businessPartnerName;
+            }
+        }
         
         if (incident.ID) {
             const currentIncident = await SELECT.one.from(Incidents).where({ ID: incident.ID });
@@ -61,9 +101,13 @@ module.exports = cds.service.impl(async function() {
         if (incident && incident.status === 'CLOSED') {
             req.error(400, 'Cannot assign a closed incident', 'INCIDENT_CLOSED');
         }
+
+        // Lookup business partner name
+        const businessPartnerName = await lookupBusinessPartnerName(businessPartnerID);
         
         await UPDATE(Incidents).set({
             businessPartner: businessPartnerID,
+            businessPartnerName: businessPartnerName,
             status: 'ASSIGNED'
         }).where({ ID });
         

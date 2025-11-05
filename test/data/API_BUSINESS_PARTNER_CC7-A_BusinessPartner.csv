@@ -1,0 +1,11 @@
+BusinessPartner,BusinessPartnerFullName,BusinessPartnerName,BusinessPartnerCategory,CreationDate
+BP001,"John Smith Enterprises Inc.","John Smith Enterprises","2","2024-01-15"
+BP002,"Tech Solutions Corp","Tech Solutions","2","2024-01-20"
+BP003,"Global Manufacturing Ltd","Global Manufacturing","2","2024-02-01"
+BP004,"Sarah Johnson","Sarah Johnson","1","2024-02-10"
+BP005,"Michael Brown","Michael Brown","1","2024-02-15"
+BP006,"Innovation Systems GmbH","Innovation Systems","2","2024-03-01"
+BP007,"Quality Assurance Partners","QA Partners","2","2024-03-10"
+BP008,"Lisa Wilson","Lisa Wilson","1","2024-03-15"
+BP009,"Advanced Technologies Inc","Advanced Tech","2","2024-04-01"
+BP010,"Robert Davis","Robert Davis","1","2024-04-05"
