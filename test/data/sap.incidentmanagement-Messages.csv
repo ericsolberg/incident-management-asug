@@ -1,0 +1,8 @@
+ID;incident_ID;author;message;timestamp;createdAt;createdBy
+650e8400-e29b-41d4-a716-446655440001;550e8400-e29b-41d4-a716-446655440001;John Smith;Initial report: Database connections are timing out intermittently. Users cannot access their data.;2024-11-01T09:15:00Z;2024-11-01T09:15:00Z;john.smith
+650e8400-e29b-41d4-a716-446655440002;550e8400-e29b-41d4-a716-446655440001;Support Team;Investigating the database connection pool. Checking server logs for any anomalies.;2024-11-01T10:30:00Z;2024-11-01T10:30:00Z;support.team
+650e8400-e29b-41d4-a716-446655440003;550e8400-e29b-41d4-a716-446655440001;Database Admin;Found high CPU usage on DB server. Optimizing slow queries and restarting connection pool.;2024-11-01T11:45:00Z;2024-11-01T11:45:00Z;db.admin
+650e8400-e29b-41d4-a716-446655440004;550e8400-e29b-41d4-a716-446655440002;IT Manager;Email server crashed at 10:30 AM. All email services are down. This is critical priority.;2024-11-02T10:35:00Z;2024-11-02T10:35:00Z;it.manager
+650e8400-e29b-41d4-a716-446655440005;550e8400-e29b-41d4-a716-446655440002;System Admin;Server hardware issue identified. Switching to backup email server while repairing primary.;2024-11-02T11:00:00Z;2024-11-02T11:00:00Z;sys.admin
+650e8400-e29b-41d4-a716-446655440006;550e8400-e29b-41d4-a716-446655440003;Web Developer;Performance monitoring shows increased response times during peak hours. Investigating caching.;2024-11-03T14:30:00Z;2024-11-03T14:30:00Z;web.dev
+650e8400-e29b-41d4-a716-446655440007;550e8400-e29b-41d4-a716-446655440003;DevOps Team;Implementing load balancing and CDN optimization to improve portal performance.;2024-11-03T15:15:00Z;2024-11-03T15:15:00Z;devops.team

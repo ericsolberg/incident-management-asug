@@ -1,0 +1,5 @@
+ID;title;description;status;urgency;businessPartner;businessPartnerName;createdAt;createdBy
+550e8400-e29b-41d4-a716-446655440001;Database Connection Issues;Customer reporting intermittent database connection failures affecting their daily operations;NEW;HIGH;0000000001;ACME Corporation;2024-11-01T09:00:00Z;system.admin
+550e8400-e29b-41d4-a716-446655440002;Email Server Down;Complete email server outage affecting all users in the organization;ASSIGNED;CRITICAL;0000000002;TechCorp Ltd;2024-11-02T10:30:00Z;system.admin
+550e8400-e29b-41d4-a716-446655440003;Login Portal Slow Response;Users experiencing slow response times when accessing the customer portal;IN_PROGRESS;MEDIUM;0000000003;Global Solutions Inc;2024-11-03T14:15:00Z;system.admin
+550e8400-e29b-41d4-a716-446655440004;Report Generation Failed;Monthly reports are failing to generate properly with missing data sections;RESOLVED;LOW;0000000001;ACME Corporation;2024-10-28T08:00:00Z;system.admin

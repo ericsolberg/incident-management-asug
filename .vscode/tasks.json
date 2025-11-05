@@ -1,5 +1,5 @@
 {
-  "version": "1.38.0",
+  "version": "2.0.0",
   "tasks": [
     {
       "label": "kill-cds-processes",
@@ -12,31 +12,6 @@
         "panel": "shared",
         "showReuseMessage": false,
         "clear": false
-      }
-    },
-    {
-      "label": "npm-install",
-      "type": "process",
-      "command": "npm",
-      "args": [
-        "install"
-      ],
-      "dependsOn": [
-        "kill-cds-processes"
-      ],
-      "options": {
-        "cwd": "${workspaceFolder}"
-      }
-    },
-    {
-      "label": "BuildMDK",
-      "type": "shell",
-      "command": "if npm list @sap/mdk-tools --depth=0 > /dev/null 2>&1; then npx mdk build --target module --ui5 --recursive;fi",
-      "dependsOn": [
-        "npm-install"
-      ],
-      "options": {
-        "cwd": "${workspaceFolder}"
       }
     },
     {
@@ -64,6 +39,46 @@
       "label": "Enable Discovery and Deploy incidentmanagement-asug",
       "taskType": "Deploy",
       "enableDiscovery": "true"
+    },
+    {
+      "label": "npm-install",
+      "type": "process",
+      "command": "npm",
+      "args": [
+        "install"
+      ],
+      "dependsOn": [
+        "kill-cds-processes"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/"
+      }
+    },
+    {
+      "label": "BuildMDK",
+      "type": "shell",
+      "command": "if npm list @sap/mdk-tools --depth=0 > /dev/null 2>&1; then npx mdk build --target module --ui5 --recursive;fi",
+      "dependsOn": [
+        "npm-install"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/"
+      }
+    },
+    {
+      "label": "dev-project",
+      "type": "process",
+      "command": "npx",
+      "args": [
+        "dev-cap-tools",
+        "gen-entrypoint"
+      ],
+      "dependsOn": [
+        "BuildMDK"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/"
+      }
     }
   ]
 }
