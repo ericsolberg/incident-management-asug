@@ -42,6 +42,12 @@ annotate service.Incidents with @(
             Label : 'General Information',
             Target : '@UI.FieldGroup#GeneratedGroup',
         },
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'MessagesFacet',
+            Label : 'Messages',
+            Target : 'messages/@UI.LineItem',
+        },
     ],
     UI.LineItem : [
         {
@@ -72,3 +78,35 @@ annotate service.Incidents with @(
     ],
 );
 
+annotate service.Messages with @(
+    UI.LineItem : [
+        {
+            $Type : 'UI.DataField',
+            Label : 'Author',
+            Value : author,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Message',
+            Value : message,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Timestamp',
+            Value : timestamp,
+        },
+    ],
+    UI.HeaderInfo : {
+        $Type : 'UI.HeaderInfoType',
+        TypeName : 'Message',
+        TypeNamePlural : 'Messages',
+        Title : {
+            $Type : 'UI.DataField',
+            Value : author,
+        },
+        Description : {
+            $Type : 'UI.DataField',
+            Value : message,
+        },
+    },
+);
